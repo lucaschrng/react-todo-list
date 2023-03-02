@@ -78,7 +78,7 @@ function App() {
 
           </div>
 
-          <p className={(taskTitle.length > 50 ? "text-red-400 " : "text-transparent") + " mt-1 ml-1 transition"}>Task
+          <p className={(taskTitle.length > 50 ? "text-red-400" : "text-transparent") + " select-none mt-1 ml-1 transition"}>Task
             title must be under 50 characters</p>
 
         </form>
