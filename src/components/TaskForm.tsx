@@ -4,8 +4,8 @@ import {Task} from "../types/types";
 
 const TaskForm = (): JSX.Element => {
   const {addTask, addImportantTask} = useContext(TasksContext);
-  const [taskTitle, setTaskTitle] = useState<string>("");
-  const [important, setImportant] = useState<boolean>(false);
+  const [taskTitle, setTaskTitle] = useState("");
+  const [important, setImportant] = useState(false);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
