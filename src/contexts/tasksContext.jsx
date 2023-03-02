@@ -39,9 +39,9 @@ const TasksProvider = ({children}) => {
   }, [tasks]);
 
   return (
-      <TasksContext.Provider value={{tasks, addTask, addImportantTask, deleteTask, deleteAll, search}}>
-        {children}
-      </TasksContext.Provider>
+    <TasksContext.Provider value={{tasks, addTask, addImportantTask, deleteTask, deleteAll, search}}>
+      {children}
+    </TasksContext.Provider>
   );
 };
 
