@@ -1,31 +1,40 @@
-import { createContext, useState, useEffect } from "react";
+import {createContext, useState, useEffect} from "react";
+import Fuse from 'fuse.js';
 
 const TasksContext = createContext();
 
-const TasksProvider = ({ children }) => {
-    const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem("tasks") || "[]"));
+const TasksProvider = ({children}) => {
+  const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem("tasks") || "[]"));
+  let fuse;
 
-    const addTask = (newTask) => {
-        setTasks([...tasks, newTask]);
-    };
+  const addTask = (newTask) => {
+    setTasks([...tasks, newTask]);
+  };
 
-    const deleteTask = (taskId) => {
-        setTasks(tasks.filter((task) => task.id !== taskId));
-    };
+  const deleteTask = (taskId) => {
+    setTasks(tasks.filter((task) => task.id !== taskId));
+  };
 
-    const deleteAll = () => {
-        setTasks([]);
-    }
+  const deleteAll = () => {
+    setTasks([]);
+  }
 
-    useEffect(() => {
-        localStorage.setItem("tasks", JSON.stringify(tasks));
-    }, [tasks]);
+  const search = (searchTerm) => {
+    return fuse.search(searchTerm).map((result) => result.item);
+  }
 
-    return (
-        <TasksContext.Provider value={{ tasks, addTask, deleteTask, deleteAll }}>
-            {children}
-        </TasksContext.Provider>
-    );
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    fuse = new Fuse(tasks, {
+      keys: ['title']
+    })
+  }, [tasks]);
+
+  return (
+      <TasksContext.Provider value={{tasks, addTask, deleteTask, deleteAll, search}}>
+        {children}
+      </TasksContext.Provider>
+  );
 };
 
-export { TasksContext, TasksProvider };
+export {TasksContext, TasksProvider};
