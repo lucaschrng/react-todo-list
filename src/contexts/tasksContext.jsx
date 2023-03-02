@@ -13,12 +13,16 @@ const TasksProvider = ({ children }) => {
         setTasks(tasks.filter((task) => task.id !== taskId));
     };
 
+    const deleteAll = () => {
+        setTasks([]);
+    }
+
     useEffect(() => {
         localStorage.setItem("tasks", JSON.stringify(tasks));
     }, [tasks]);
 
     return (
-        <TasksContext.Provider value={{ tasks, addTask, deleteTask }}>
+        <TasksContext.Provider value={{ tasks, addTask, deleteTask, deleteAll }}>
             {children}
         </TasksContext.Provider>
     );

@@ -3,7 +3,7 @@ import './App.css'
 import { TasksContext } from "./contexts/tasksContext";
 
 function App() {
-  const { tasks, addTask, deleteTask } = useContext(TasksContext);
+  const { tasks, addTask, deleteTask, deleteAll } = useContext(TasksContext);
   const [taskTitle, setTaskTitle] = useState("");
 
   const handleChange = (e) => {
@@ -18,11 +18,14 @@ function App() {
 
   return (
     <div className="App">
+
       <h1>Tasks</h1>
+
       <form onSubmit={handleSubmit}>
         <input type="text" placeholder={"Task title"} value={taskTitle} onChange={handleChange}/>
         <button type={"submit"}>Add</button>
       </form>
+
       <ul>
           {tasks.map((task) => (
               <li key={task.id}>
@@ -31,6 +34,9 @@ function App() {
               </li>
           ))}
       </ul>
+
+      <button onClick={deleteAll}>Delete all</button>
+
     </div>
   )
 }
