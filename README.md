@@ -3,6 +3,13 @@ This is a simple TODO list app built with React. You can add, delete and search 
 create an important task that will always appear on top of the list. For the search functionality, I used Fuse.js to
 allow fuzzy searching. To store the tasks, I used localStorage and the Context API.
 
+## Technologies Used
+
+- [React](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [Fuse.js](https://github.com/krisk/Fuse)
+
 ## Installation
 To install the dependencies, run the following command:
 ```
