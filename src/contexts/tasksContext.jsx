@@ -11,6 +11,10 @@ const TasksProvider = ({children}) => {
     setTasks([...tasks, newTask]);
   };
 
+  const addImportantTask = (newTask) => {
+    setTasks([{...newTask, important: true}, ...tasks]);
+  }
+
   const deleteTask = (taskId) => {
     setTasks(tasks.filter((task) => task.id !== taskId));
   };
@@ -20,6 +24,10 @@ const TasksProvider = ({children}) => {
   }
 
   const search = (searchTerm) => {
+    // Classic sorting
+    // return tasks.filter((task) => task.title.toLowerCase().includes(searchTerm.toLowerCase()));
+
+    // Fuzzy sorting
     return fuse.search(searchTerm).map((result) => result.item);
   }
 
@@ -31,7 +39,7 @@ const TasksProvider = ({children}) => {
   }, [tasks]);
 
   return (
-      <TasksContext.Provider value={{tasks, addTask, deleteTask, deleteAll, search}}>
+      <TasksContext.Provider value={{tasks, addTask, addImportantTask, deleteTask, deleteAll, search}}>
         {children}
       </TasksContext.Provider>
   );
