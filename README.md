@@ -15,3 +15,6 @@ npm run dev
 
 ## Explore the project
 If you want to try out the app, you can visit the following link: https://react-todo-list-bice.vercel.app/
+
+## Usage
+To make a task important, click on the exclamation mark icon.
