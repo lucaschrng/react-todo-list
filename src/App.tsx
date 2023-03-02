@@ -2,9 +2,9 @@ import {useContext, useEffect, useState} from "react";
 import {TasksContext} from "./contexts/tasksContext";
 import SearchBar from "./components/SearchBar";
 import TaskForm from "./components/TaskForm";
-import TasksList from "./components/TasksList.jsx";
+import TasksList from "./components/TasksList";
 
-function App() {
+function App(): JSX.Element {
   const {tasks, deleteAll} = useContext(TasksContext);
   const [displayedTasks, setDisplayedTasks] = useState(tasks);
 

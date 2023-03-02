@@ -1,16 +1,18 @@
-import {useContext, useState} from "react";
-import {TasksContext} from "../contexts/tasksContext.jsx";
+import React, {useContext, useState} from "react";
+import {TasksContext} from "../contexts/tasksContext";
+import {Task} from "../types/types";
 
-const TaskForm = () => {
+const TaskForm = (): JSX.Element => {
   const {addTask, addImportantTask} = useContext(TasksContext);
-  const [taskTitle, setTaskTitle] = useState("");
-  const [important, setImportant] = useState(false);
+  const [taskTitle, setTaskTitle] = useState<string>("");
+  const [important, setImportant] = useState<boolean>(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (taskTitle.length <= 50 && taskTitle.length > 0) {
-      if (important) addImportantTask({id: Date.now(), title: taskTitle});
-      else addTask({id: Date.now(), title: taskTitle});
+      const newTask: Task = { id: Date.now(), title: taskTitle };
+      if (important) addImportantTask(newTask);
+      else addTask(newTask);
       setTaskTitle("");
       setImportant(false);
     }

@@ -1,7 +1,14 @@
-import {useContext, useEffect, useState} from "react";
-import {TasksContext} from "../contexts/tasksContext.jsx";
+import React, {useContext, useEffect, useState} from "react";
+import {TasksContext} from "../contexts/tasksContext";
+import {Task} from "../types/types";
 
-const SearchBar = ({updateTasks}) => {
+type UpdateTasks = (tasks: Task[]) => void;
+
+interface SearchBarProps {
+    updateTasks: UpdateTasks;
+}
+
+const SearchBar: React.FC<SearchBarProps> = ({updateTasks}) => {
   const {tasks, search} = useContext(TasksContext);
   const [searchTerm, setSearchTerm] = useState("");
 

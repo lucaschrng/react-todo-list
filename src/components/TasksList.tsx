@@ -1,7 +1,12 @@
-import {useContext} from "react";
-import {TasksContext} from "../contexts/tasksContext.jsx";
+import React, {useContext} from "react";
+import {TasksContext} from "../contexts/tasksContext";
+import {Task} from "../types/types";
 
-const TasksList = ({tasks}) => {
+type TasksListProps = {
+  tasks: Task[];
+};
+
+const TasksList: React.FC<TasksListProps> = ({tasks}): JSX.Element => {
   const {deleteTask} = useContext(TasksContext);
 
   return (
